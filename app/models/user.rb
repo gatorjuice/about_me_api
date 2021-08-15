@@ -5,4 +5,6 @@ class User < ApplicationRecord
 
   validates :username, :password_digest, :age, presence: true
   validates :username, uniqueness: true
+
+  has_many :favorites, dependent: :destroy
 end
