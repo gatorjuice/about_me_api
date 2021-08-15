@@ -2,17 +2,18 @@
 
 module Api
   module V1
+    # Users Controller
     class UsersController < ApplicationController
-      before_action :authorized, only: %i[create auto_login]
+      before_action :authorize_user, only: %i[create auto_login]
 
       # REGISTER
       def create
         @user = User.create(user_params)
         if @user.save
           token = encode_token({ user_id: @user.id })
-          render json: { user: UserSerializer.new(@user), token: token }
+          render_created(user: UserSerializer.new(@user), token: token)
         else
-          render json: { error: 'Invalid username or password' }
+          render_unauthorized(error: 'Invalid username or password')
         end
       end
 
@@ -22,9 +23,9 @@ module Api
 
         if @user&.authenticate(params[:password])
           token = encode_token({ user_id: @user.id })
-          render json: { user: UserSerializer.new(@user), token: token }
+          render_success(user: UserSerializer.new(@user), token: token)
         else
-          render json: { error: 'Invalid username or password' }
+          render_unauthorized(error: 'Invalid username or password')
         end
       end
 

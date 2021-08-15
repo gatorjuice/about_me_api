@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Helper module for request specs
 module RequestSpecHelper
   private
 
@@ -7,8 +8,12 @@ module RequestSpecHelper
     JSON.parse(response.body)
   end
 
+  def data
+    parsed_response['data']
+  end
+
   def login_user_for_token(username, password)
     post api_v1_login_path, params: { username: username, password: password }
-    parsed_response.fetch('token')
+    data.fetch('token')
   end
 end

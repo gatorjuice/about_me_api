@@ -1,7 +1,22 @@
 # frozen_string_literal: true
 
+# Application Controller
 class ApplicationController < ActionController::API
-  before_action :authorized
+  def render_created(response)
+    render_success(response, :created)
+  end
+
+  def render_success(response, status = :ok)
+    render json: { data: response, errors: [] }, status: status
+  end
+
+  def render_unauthorized(response)
+    render_error(response, :unauthorized)
+  end
+
+  def render_error(response, status = :error)
+    render json: { data: response, errors: [] }, status: status
+  end
 
   def encode_token(payload)
     JWT.encode(payload, 's3cr3t')
@@ -14,7 +29,7 @@ class ApplicationController < ActionController::API
   def decoded_token
     return unless auth_header
 
-    token = auth_header.split(' ')[1]
+    token = auth_header.split[1]
 
     JWT.decode(token, 's3cr3t', true, algorithm: 'HS256')
   rescue JWT::DecodeError
@@ -32,7 +47,7 @@ class ApplicationController < ActionController::API
     !!logged_in_user
   end
 
-  def authorized
-    render json: { message: 'Please log in' }, status: :unauthorized unless logged_in?
+  def authorize_user
+    render_unauthorized(message: 'Please log in') unless logged_in?
   end
 end
