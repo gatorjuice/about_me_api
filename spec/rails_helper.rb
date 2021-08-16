@@ -1,5 +1,12 @@
 # frozen_string_literal: true
 
+# Run simplecov
+require 'simplecov'
+SimpleCov.start 'rails' do
+  add_group 'Interactors', 'app/interactors'
+  add_group 'Serializers', 'app/serializers'
+end
+
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
