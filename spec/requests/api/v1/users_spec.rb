@@ -43,7 +43,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
       it 'returns an error message' do
         create_user
 
-        expect(data).to eq('message' => 'Please log in')
+        expect(errors).to eq('message' => 'Please log in')
       end
     end
   end

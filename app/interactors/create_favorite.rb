@@ -5,9 +5,9 @@ class CreateFavorite
   include Interactor
 
   def call
-    context.favorite = context.logged_in_user.favorites.create!(
-      category: context.category,
-      description: context.description
+    context.favorite = context.user.favorites.create!(
+      category: context.favorite_params[:category],
+      description: context.favorite_params[:description]
     )
   rescue ActiveRecord::RecordInvalid, ArgumentError => e
     context.fail!(message: [e.message])

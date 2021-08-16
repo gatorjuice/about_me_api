@@ -8,7 +8,8 @@ module Api
 
       def create
         result = CreateFavorite.call(
-          favorite_params.merge(logged_in_user: logged_in_user)
+          favorite_params: favorite_params,
+          user: logged_in_user
         )
 
         if result.success?

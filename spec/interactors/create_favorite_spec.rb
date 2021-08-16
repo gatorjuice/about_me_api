@@ -7,9 +7,11 @@ RSpec.describe CreateFavorite, type: :interactor do
 
   let(:params) do
     {
-      logged_in_user: create(:user),
-      category: category,
-      description: description
+      user: create(:user),
+      favorite_params: {
+        category: category,
+        description: description
+      }
     }
   end
 
