@@ -32,6 +32,8 @@ gem 'jwt', '~> 2.2.3'
 
 gem 'active_model_serializers'
 
+gem 'interactor-rails', '~> 2.0'
+
 group :development, :test do
   gem 'factory_bot_rails'
   gem 'pry-byebug'

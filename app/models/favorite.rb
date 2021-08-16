@@ -7,5 +7,7 @@ class Favorite < ApplicationRecord
     relationship: 20
   }
 
+  validates :category, :description, presence: true
+
   belongs_to :user
 end

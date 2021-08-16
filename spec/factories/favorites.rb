@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :favorite do
-    user_id { 1 }
-    category { 1 }
-    description { 'MyString' }
+    user
+    category { :drink }
+    description { 'Water' }
   end
 end

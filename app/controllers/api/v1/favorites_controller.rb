@@ -2,13 +2,20 @@
 
 module Api
   module V1
+    # Favorites Controller
     class FavoritesController < ApplicationController
-      before_action :authorize_user, only: %i[create]
+      before_action :authorize_user
 
       def create
-        favorite = logged_in_user.favorites.create!(favorite_params)
+        result = CreateFavorite.call(
+          favorite_params.merge(logged_in_user: logged_in_user)
+        )
 
-        render_created(favorite: FavoriteSerializer.new(favorite))
+        if result.success?
+          render_created(favorite: FavoriteSerializer.new(result.favorite))
+        else
+          render_error(result.message)
+        end
       end
 
       private

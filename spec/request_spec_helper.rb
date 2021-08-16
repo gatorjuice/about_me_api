@@ -12,6 +12,10 @@ module RequestSpecHelper
     parsed_response['data']
   end
 
+  def errors
+    parsed_response['errors']
+  end
+
   def login_user_for_token(username, password)
     post api_v1_login_path, params: { username: username, password: password }
     data.fetch('token')

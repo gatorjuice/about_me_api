@@ -88,6 +88,10 @@ GEM
       activesupport (>= 5.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    interactor (3.1.2)
+    interactor-rails (2.2.1)
+      interactor (~> 3.0)
+      rails (>= 4.2)
     jsonapi-renderer (0.2.2)
     jwt (2.2.3)
     listen (3.6.0)
@@ -226,6 +230,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   factory_bot_rails
+  interactor-rails (~> 2.0)
   jwt (~> 2.2.3)
   listen (~> 3.3)
   pg (~> 1.1)

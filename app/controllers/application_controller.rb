@@ -10,12 +10,12 @@ class ApplicationController < ActionController::API
     render json: { data: response, errors: [] }, status: status
   end
 
-  def render_unauthorized(response)
-    render_error(response, :unauthorized)
+  def render_unauthorized(errors)
+    render_error(errors, :unauthorized)
   end
 
-  def render_error(response, status = :error)
-    render json: { data: response, errors: [] }, status: status
+  def render_error(errors, status = :bad_request)
+    render json: { data: nil, errors: errors }, status: status
   end
 
   def encode_token(payload)
