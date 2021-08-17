@@ -9,6 +9,10 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:password_digest) }
     it { is_expected.to validate_presence_of(:age) }
     it { is_expected.to validate_numericality_of(:age).only_integer }
+
+    it 'validates associated favorites' do
+      expect(build(:user, :with_invalid_favorite)).to be_invalid
+    end
   end
 
   describe 'relationships' do
