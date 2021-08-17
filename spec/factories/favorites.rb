@@ -5,5 +5,9 @@ FactoryBot.define do
     user
     category { :drink }
     description { 'Water' }
+
+    trait :with_empty_description do
+      description { '' }
+    end
   end
 end

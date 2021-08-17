@@ -12,7 +12,7 @@ class CreateUser
     else
       context.fail!(message: user.errors.full_messages)
     end
-  rescue ActiveRecord::RecordInvalid => e
+  rescue ActiveRecord::RecordInvalid, ArgumentError => e
     context.fail!(message: [e.message])
   end
 end
