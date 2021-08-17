@@ -1,6 +1,8 @@
 # About Me API
 A real-ish backend project for practice and teaching of Rails APIs
 
+![CI-CD](https://github.com/gatorjuice/about_me_api/actions/workflows/tests.yml/badge.svg)
+
 ## Purposes
 This is not a project with any defined special purpose. It doesn't support any production frontend (yet). Instead this is meant to be a go-to safe place to try new rails features, teach through example, try out dependencies, etc. But for the sake of categorization and a halfway decent Readme, I will list out the main drivers for putting this together.
 
