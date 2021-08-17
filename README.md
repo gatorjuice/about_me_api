@@ -1,5 +1,6 @@
 # About Me API
 A real-ish backend project for practice and teaching of Rails APIs
+
 ![CI-CD](https://github.com/gatorjuice/about_me_api/actions/workflows/tests.yml/badge.svg)
 
 ## Purposes
