@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Favorite < ApplicationRecord
-  enum category: { drink: 0, snack: 10, relationship: 20 }
+  enum category: { beverage: 0, meal: 10, friendship: 20 }
 
   validates :category, :description, presence: true
 

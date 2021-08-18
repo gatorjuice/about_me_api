@@ -25,9 +25,9 @@ RSpec.describe 'Api::V1::Users', type: :request do
     end
     let(:favorites_attributes) do
       [
-        { category: 'drink', description: 'pepsi' },
-        { category: 'snack', description: 'chips' },
-        { category: 'relationship', description: 'cousin bob' }
+        { category: 'beverage', description: 'pepsi' },
+        { category: 'meal', description: 'chips' },
+        { category: 'friendship', description: 'cousin bob' }
       ]
     end
 
@@ -68,7 +68,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
       let(:favorites_attributes) do
         [
           { category: 'horses', description: 'pepsi' },
-          { category: 'snack' }
+          { category: 'meal' }
         ]
       end
 
