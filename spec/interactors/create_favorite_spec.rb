@@ -17,7 +17,7 @@ RSpec.describe CreateFavorite, type: :interactor do
 
   describe '.call' do
     context 'when successful' do
-      let(:category) { 'drink' }
+      let(:category) { 'beverage' }
       let(:description) { 'coke' }
 
       it 'succeeds' do

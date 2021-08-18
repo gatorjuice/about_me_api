@@ -15,7 +15,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe 'relationships' do
+  describe 'friendships' do
     it { is_expected.to accept_nested_attributes_for :favorites }
     it { is_expected.to have_many(:favorites).dependent(:destroy) }
   end

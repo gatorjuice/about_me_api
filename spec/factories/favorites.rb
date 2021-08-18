@@ -3,7 +3,7 @@
 FactoryBot.define do
   factory :favorite do
     user
-    category { :drink }
+    category { :beverage }
     description { 'Water' }
 
     trait :with_empty_description do

@@ -26,7 +26,7 @@ RSpec.describe 'Api::V1::Favorites', type: :request do
 
       it 'returns the newly created favorite' do
         create_favorite
-        expect(data).to eq('favorite' => { 'category' => 'drink', 'description' => 'Water' })
+        expect(data).to eq('favorite' => { 'category' => 'beverage', 'description' => 'Water' })
       end
 
       it 'adds a favorite for the logged in user' do
