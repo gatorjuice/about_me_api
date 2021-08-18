@@ -7,20 +7,14 @@ module Api
       before_action :authorize_user
 
       def show
-        render_success(
-          user: UserSerializer.new(logged_in_user),
-          token: encode_token(user_id: logged_in_user.id)
-        )
+        render_success(serialized_user_with_token(logged_in_user))
       end
 
       def create
         result = CreateUser.call(user_params: user_params)
 
         if result.success?
-          render_created(
-            user: UserSerializer.new(result.user),
-            token: encode_token(user_id: result.user.id)
-          )
+          render_created(serialized_user_with_token(result.user))
         else
           render_error(message: result.message)
         end

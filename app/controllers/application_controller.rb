@@ -50,4 +50,8 @@ class ApplicationController < ActionController::API
   def authorize_user
     render_unauthorized(message: 'Please log in') unless logged_in?
   end
+
+  def serialized_user_with_token(user)
+    { user: UserSerializer.new(user), token: encode_token(user_id: user.id) }
+  end
 end

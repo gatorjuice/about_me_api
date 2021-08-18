@@ -8,8 +8,7 @@ module Api
         user = User.find_by(username: params.require(:username))
 
         if user&.authenticate(params.require(:password))
-          token = encode_token(user_id: user.id)
-          render_success(user: UserSerializer.new(user), token: token)
+          render_success(serialized_user_with_token(user))
         else
           render_unauthorized(error: 'Invalid username or password')
         end
