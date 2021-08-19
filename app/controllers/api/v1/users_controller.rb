@@ -4,7 +4,7 @@ module Api
   module V1
     # Users Controller
     class UsersController < ApplicationController
-      before_action :authorize_user
+      before_action :authorize_user, only: [:show]
 
       def show
         render_success(serialized_user_with_token(logged_in_user))

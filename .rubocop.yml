@@ -10,7 +10,7 @@ Metrics/BlockLength:
     - 'spec/**/*.rb'
 
 RSpec/MultipleMemoizedHelpers:
-  Max: 6
+  Max: 8
 
 Style/Documentation:
   Exclude:
