@@ -2,6 +2,10 @@
 
 # Application Controller
 class ApplicationController < ActionController::API
+  rescue_from StandardError do |exception|
+    render_error(exception.message)
+  end
+
   def render_created(response)
     render_success(response, :created)
   end
