@@ -12,14 +12,14 @@ RSpec.describe 'Api::V1::Users', type: :request do
       get api_v1_user_path(user_id), headers: headers
     end
 
+    let!(:user) { create(:user, :with_favorites, username: username, password: password) }
+    let(:username) { 'test_user_1' }
+    let(:password) { 'p@ssw@rd' }
     let(:user_id) { user.id }
 
     before { show_user }
 
     context 'when signed in' do
-      let!(:user) { create(:user, :with_favorites, username: username, password: password) }
-      let(:username) { 'test_user_1' }
-      let(:password) { 'p@ssw@rd' }
       let!(:token) { login_user_for_token(user.username, password) }
       let(:headers) { json_header.merge('Authorization' => "Bearer #{token}") }
       let(:expected_data) do
@@ -53,6 +53,16 @@ RSpec.describe 'Api::V1::Users', type: :request do
 
       it 'does not return data' do
         expect(data).to be_nil
+      end
+    end
+
+    context 'when attempting to access a different user by params' do
+      let!(:token) { login_user_for_token(user.username, password) }
+      let(:headers) { json_header.merge('Authorization' => "Bearer #{token}") }
+      let(:user_id) { user.id + 1 }
+
+      it 'returns the user defined by the JWT' do
+        expect(data.dig('user', 'username')).to eq(user.username)
       end
     end
   end
