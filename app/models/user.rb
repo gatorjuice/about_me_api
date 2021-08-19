@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# User class
 class User < ApplicationRecord
   has_secure_password
 
@@ -10,4 +11,17 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   accepts_nested_attributes_for :favorites
   validates_associated :favorites
+
+  after_update :destroy_conflicting_favorites
+
+  MAX_ALLOWED_FAVORITES = 1
+
+  def destroy_conflicting_favorites
+    Favorite.categories.each_key do |category|
+      until favorites.public_send(category).count <= MAX_ALLOWED_FAVORITES
+        favorites.public_send(category).min.destroy
+        favorites.reload
+      end
+    end
+  end
 end

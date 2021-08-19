@@ -7,7 +7,7 @@ module Api
       before_action :authorize_user
 
       def create
-        result = CreateFavorite.call(
+        result = Favorites::Create.call(
           favorite_params: favorite_params,
           user: logged_in_user
         )

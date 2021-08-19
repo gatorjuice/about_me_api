@@ -2,19 +2,16 @@
 
 require 'rails_helper'
 
-RSpec.describe CreateUser, type: :interactor do
+RSpec.describe Favorites::Create, type: :interactor do
   subject(:context) { described_class.call(params) }
 
   let(:params) do
     {
-      user_params: attributes_for(:user).merge(
-        favorites_attributes: [
-          {
-            category: category,
-            description: description
-          }
-        ]
-      )
+      user: create(:user),
+      favorite_params: {
+        category: category,
+        description: description
+      }
     }
   end
 
@@ -27,8 +24,8 @@ RSpec.describe CreateUser, type: :interactor do
         expect(context).to be_a_success
       end
 
-      it 'provides the user' do
-        expect(context.user).to be_a_kind_of(User)
+      it 'provides the favorite' do
+        expect(context.favorite).to be_a_kind_of(Favorite)
       end
     end
 

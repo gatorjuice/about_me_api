@@ -5,23 +5,40 @@ require 'rails_helper'
 RSpec.describe 'Api::V1::Users', type: :request do
   include RequestSpecHelper
 
+  let!(:user) { create(:user, :with_favorites, username: username, password: password) }
+  let(:username) { 'test_user_1' }
+  let(:password) { 'p@ssw@rd' }
+  let(:user_id) { user.id }
   let(:json_header) { { 'Content-Type' => 'application/json' } }
+  let(:headers) { json_header.merge('Authorization' => "Bearer #{token}") }
+  let!(:token) { login_user_for_token(user.username, password) }
+
+  let(:params) do
+    {
+      user: {
+        username: 'jgates',
+        password: 'hello',
+        age: 20,
+        favorites_attributes: favorites_attributes
+      }
+    }
+  end
+  let(:favorites_attributes) do
+    [
+      { category: 'beverage', description: 'pepsi' },
+      { category: 'meal', description: 'chips' },
+      { category: 'friendship', description: 'cousin bob' }
+    ]
+  end
 
   describe 'GET#show' do
     subject(:show_user) do
       get api_v1_user_path(user_id), headers: headers
     end
 
-    let!(:user) { create(:user, :with_favorites, username: username, password: password) }
-    let(:username) { 'test_user_1' }
-    let(:password) { 'p@ssw@rd' }
-    let(:user_id) { user.id }
-
     before { show_user }
 
     context 'when signed in' do
-      let!(:token) { login_user_for_token(user.username, password) }
-      let(:headers) { json_header.merge('Authorization' => "Bearer #{token}") }
       let(:expected_data) do
         {
           'token' => a_kind_of(String),
@@ -72,24 +89,6 @@ RSpec.describe 'Api::V1::Users', type: :request do
       post api_v1_users_path, params: params.to_json, headers: json_header
     end
 
-    let(:params) do
-      {
-        user: {
-          username: 'jgates',
-          password: 'hello',
-          age: 20,
-          favorites_attributes: favorites_attributes
-        }
-      }
-    end
-    let(:favorites_attributes) do
-      [
-        { category: 'beverage', description: 'pepsi' },
-        { category: 'meal', description: 'chips' },
-        { category: 'friendship', description: 'cousin bob' }
-      ]
-    end
-
     it 'creates a new user in the database' do
       expect { create_user }.to change(User, :count).by(1)
     end
@@ -128,6 +127,36 @@ RSpec.describe 'Api::V1::Users', type: :request do
         create_user
         expect(errors).to eq('message' => ["'horses' is not a valid category"])
       end
+    end
+  end
+
+  describe 'PATCH#update' do
+    subject(:update_user) do
+      patch "/api/v1/users/#{user.id}", params: params.to_json, headers: headers
+    end
+
+    let(:expected_username) { 'jgates' }
+    let(:expected_age) { 20 }
+    let(:expected_favorites) do
+      [
+        { 'category' => 'meal', 'description' => 'chips' },
+        { 'category' => 'beverage', 'description' => 'pepsi' },
+        { 'category' => 'friendship', 'description' => 'cousin bob' }
+      ]
+    end
+
+    before { update_user }
+
+    it 'updates the username' do
+      expect(data.dig('user', 'username')).to eq(expected_username)
+    end
+
+    it 'updates the age' do
+      expect(data.dig('user', 'age')).to eq(expected_age)
+    end
+
+    it 'updates the favorites' do
+      expect(data.dig('user', 'favorites')).to match_array(expected_favorites)
     end
   end
 end
