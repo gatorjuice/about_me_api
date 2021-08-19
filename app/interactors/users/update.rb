@@ -7,7 +7,7 @@ module Users
 
     def call
       context.user.update(context.user_params) ||
-        context.fail!(message: user.errors.full_messages)
+        context.fail!(message: context.user.errors.full_messages)
     rescue ActiveRecord::RecordInvalid, ArgumentError => e
       context.fail!(message: [e.message])
     end

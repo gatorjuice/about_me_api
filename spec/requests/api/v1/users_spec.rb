@@ -158,5 +158,17 @@ RSpec.describe 'Api::V1::Users', type: :request do
     it 'updates the favorites' do
       expect(data.dig('user', 'favorites')).to match_array(expected_favorites)
     end
+
+    context 'when update params are invalid' do
+      let(:params) { { user: { age: 'bread' } } }
+
+      it 'raises an error' do
+        expect(errors).to eq('message' => ['Age is not a number'])
+      end
+
+      it 'does not update the age' do
+        expect(user.age).to eq(25)
+      end
+    end
   end
 end
