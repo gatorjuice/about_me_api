@@ -9,13 +9,14 @@ class TicketmasterApiClient
   MAX_RESULTS = 100
 
   def self.event_search(params = {})
-    response = maybe_cached_response(params)
+    key = cache_key(__method__, query_params(params))
+    response = maybe_cached_response(key, params)
     parsed_response = JSON.parse(response.body).dig('_embedded', 'events')
 
     if response.success? && parsed_response
       parsed_response.map { |event_data| build_event(event_data) }
     else
-      Rails.logger.info("\nNo events found for #{params.to_h.inspect}\n")
+      maybe_log_and_clean_cache(key)
 
       []
     end
@@ -24,15 +25,18 @@ class TicketmasterApiClient
   class << self
     private
 
-    def maybe_cached_response(params)
-      Rails.cache.fetch(
-        [self, :maybe_cached_response, params.to_h.inspect],
-        expires_in: CACHE_EXP,
-        force: params[:bust_cache]
-      ) do
-        Rails.logger.info("\n#{self}: result from #{params.to_h.inspect} not cached, making call\n")
-        http_client.get('events', query_params)
+    def maybe_cached_response(key, params)
+      Rails.cache.fetch(key, expires_in: CACHE_EXP, force: params[:bust_cache]) do
+        Rails.logger.info("\n#{self}: result from #{key} not cached, making request\n")
+
+        http_client.get('events', query_params(params))
       end
+    end
+
+    def cache_key(method_name, params)
+      string_params = params.to_h.sort.map { |key, value| "#{key}=#{value}" }.join('&')
+
+      [to_s.underscore, method_name, string_params].join('/')
     end
 
     def query_params(params)
@@ -50,6 +54,13 @@ class TicketmasterApiClient
         sales: event_data['sales'],
         price_ranges: event_data['priceRanges']
       }
+    end
+
+    def maybe_log_and_clean_cache(key)
+      return unless Rails.cache.fetch(key)
+
+      Rails.logger.info("\nNo events found.\nDeleting Cached Key: #{key}\n")
+      Rails.cache.delete(key)
     end
 
     def http_client

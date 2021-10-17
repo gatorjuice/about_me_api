@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Concerts
+  # Compiles results from concert APIs
   class Index
     include Interactor
 

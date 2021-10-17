@@ -2,6 +2,7 @@
 
 module Api
   module V1
+    # Controller for Concerts API
     class ConcertsController < ApplicationController
       def index
         result = Concerts::Index.call(
