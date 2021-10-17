@@ -27,6 +27,9 @@ gem 'bootsnap', '>= 1.4.4', require: false
 # Handle concurrent 3rd party API requests
 gem 'concurrent-ruby', '~> 1.1.9'
 
+# Manage ENV Variables
+gem 'dotenv-rails'
+
 # Use Faraday for HTTP Requests
 gem 'faraday', '~> 1.5.1'
 
@@ -41,7 +44,6 @@ gem 'active_model_serializers'
 gem 'interactor-rails', '~> 2.0'
 
 group :development, :test do
-  gem 'dotenv-rails'
   gem 'factory_bot_rails'
   gem 'pry-byebug'
   gem 'pry-rails'
