@@ -84,3 +84,18 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+VCR.configure do |config|
+  config.configure_rspec_metadata!
+  config.allow_http_connections_when_no_cassette = true
+  config.cassette_library_dir = File.expand_path('cassettes', __dir__)
+  config.hook_into :webmock
+  config.ignore_request { ENV['DISABLE_VCR'] }
+  config.default_cassette_options = {
+    record: :new_episodes
+  }
+
+  ['TICKETMASTER_API_KEY'].each do |sensitive_key|
+    config.filter_sensitive_data("<#{sensitive_key}>") { ENV[sensitive_key] }
+  end
+end

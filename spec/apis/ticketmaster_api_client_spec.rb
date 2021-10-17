@@ -6,8 +6,8 @@ RSpec.describe TicketmasterApiClient do
   subject(:client) { described_class }
 
   describe '.event_search' do
-    it 'returns a list of events' do
-      expect(client.event_search('postalCode' => '60618')).to eq('foo')
+    it 'returns a list of events', vcr: { cassette_name: 'test' } do
+      expect(client.event_search('postalCode' => '60618')).to be_a_kind_of(Array)
     end
   end
 end
