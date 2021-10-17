@@ -13,7 +13,7 @@ class TicketmasterApiClient
     cached_key, success, parsed_response = execute_request(params)
 
     if success && parsed_response
-      parsed_response.map { |event_data| build_event(event_data) }
+      parsed_response.map { |event_data| build_event(event_data) }.flatten
     else
       maybe_log_and_clean_cache(cached_key)
 
@@ -59,13 +59,13 @@ class TicketmasterApiClient
 
     def build_event(event_data)
       event_data['name'].split(BAND_NAME_DELIMITER).map do |band_name|
-        {
-          name: band_name,
+        Concert.new(
+          band: band_name,
           source_id: event_data['id'],
           dates: event_data['dates'],
           sales: event_data['sales'],
           price_ranges: event_data['priceRanges']
-        }
+        )
       end
     end
 
