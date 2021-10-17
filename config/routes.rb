@@ -5,8 +5,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/login', to: 'sessions#login'
 
-      resources :users, only: %i[show create update]
+      resources :concerts, only: %i[index show]
       resources :favorites, only: %i[create]
+      resources :users, only: %i[show create update]
     end
   end
 end
