@@ -28,3 +28,6 @@
 
 # Ignore coverage
 /coverage
+
+# Ignore .env.local
+.env.local
