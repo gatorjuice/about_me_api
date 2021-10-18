@@ -33,6 +33,9 @@ gem 'dotenv-rails'
 # Use Faraday for HTTP Requests
 gem 'faraday', '~> 1.5.1'
 
+# Sidekiq for async jobs
+gem 'sidekiq'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors', '~> 1.1.1'
 
