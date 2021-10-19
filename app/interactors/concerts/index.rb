@@ -9,7 +9,7 @@ module Concerts
     def call
       context.concerts = all_concerts
 
-      Concerts::CreateWorker.perform_async(context.concerts.map(&:attributes))
+      # Concerts::CreateWorker.perform_async(context.concerts.map(&:attributes))
     end
 
     private
