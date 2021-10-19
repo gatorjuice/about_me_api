@@ -7,12 +7,17 @@ AllCops:
 
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*.rb'
+    - "spec/**/*.rb"
+
+Metrics/MethodLength:
+  Exclude:
+    - "config/*.rb"
+    - "db/migrate/*.rb"
 
 RSpec/MultipleMemoizedHelpers:
   Max: 12
 
 Style/Documentation:
   Exclude:
-    - 'config/*.rb'
-    - 'db/migrate/*.rb'
+    - "config/*.rb"
+    - "db/migrate/*.rb"

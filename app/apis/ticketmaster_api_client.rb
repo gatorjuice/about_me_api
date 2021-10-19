@@ -7,7 +7,7 @@ class TicketmasterApiClient
   INCLUDE_TEST = 'no'
   BAND_NAME_DELIMITER = ', '
   CACHE_EXP = 10.minutes
-  MAX_RESULTS = 100
+  MAX_RESULTS = 1
 
   def self.event_search(params = {})
     cached_key, success, parsed_response = execute_request(params)
@@ -64,7 +64,8 @@ class TicketmasterApiClient
           source_id: event_data['id'],
           dates: event_data['dates'],
           sales: event_data['sales'],
-          price_ranges: event_data['priceRanges']
+          price_ranges: event_data['priceRanges'],
+          venues: event_data.dig('_embedded', 'venues')
         )
       end
     end
@@ -72,7 +73,7 @@ class TicketmasterApiClient
     def maybe_log_and_clean_cache(key, error = nil)
       return unless Rails.cache.fetch(key)
 
-      Rails.logger.error(e) if error
+      Rails.logger.error(error) if error
       Rails.logger.info("\nNo events found.\nDeleting Cached Key: #{key}\n")
       Rails.cache.delete(key)
     end

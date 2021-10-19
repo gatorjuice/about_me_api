@@ -1,7 +1,16 @@
-class Concerts::CreateWorker
-  include Sidekiq::Worker
+# frozen_string_literal: true
 
-  def perform(*args)
-    Concert.create!
+module Concerts
+  # An async worker class responsible attempting to persist concerts for later use.
+  class CreateWorker
+    include Sidekiq::Worker
+
+    def perform(concerts)
+      concerts.map do |concert|
+        Concert.create!(concert)
+      rescue StandardError => e
+        Sidekiq.logger.info(e)
+      end
+    end
   end
 end
