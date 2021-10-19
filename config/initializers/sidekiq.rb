@@ -7,8 +7,10 @@ Sidekiq::Web.use ActionDispatch::Cookies
 Sidekiq::Web.use ActionDispatch::Session::CookieStore, key: '_interslice_session'
 
 Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-  ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(username),
-                                              ::Digest::SHA256.hexdigest(ENV['SIDEKIQ_USERNAME'])) &
-    ActiveSupport::SecurityUtils.secure_compare(::Digest::SHA256.hexdigest(password),
-                                                ::Digest::SHA256.hexdigest(ENV['SIDEKIQ_PASSWORD']))
+  secure_compare(username, ENV['SIDEKIQ_USERNAME']) &
+    secure_compare(password, ENV['SIDEKIQ_PASSWORD'])
+end
+
+def secure_compare(supplied_string, comparison_string)
+  ActiveSupport::SecurityUtils.secure_compare(supplied_string, comparison_string)
 end

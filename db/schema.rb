@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_17_165236) do
+ActiveRecord::Schema.define(version: 2021_10_19_083156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "concerts", force: :cascade do |t|
-    t.integer "venue_id"
     t.string "source_id"
     t.string "band"
     t.datetime "date_time"
@@ -25,6 +24,8 @@ ActiveRecord::Schema.define(version: 2021_10_17_165236) do
     t.jsonb "price_ranges"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "venues"
+    t.index ["band", "source_id"], name: "index_concerts_on_band_and_source_id", unique: true
   end
 
   create_table "favorites", force: :cascade do |t|
