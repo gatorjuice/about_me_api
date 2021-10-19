@@ -93,6 +93,8 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    fakeredis (0.8.0)
+      redis (~> 4.1)
     faraday (1.5.1)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
@@ -281,6 +283,7 @@ DEPENDENCIES
   concurrent-ruby (~> 1.1.9)
   dotenv-rails
   factory_bot_rails
+  fakeredis
   faraday (~> 1.5.1)
   interactor-rails (~> 2.0)
   jwt (~> 2.2.3)

@@ -63,6 +63,7 @@ group :development do
 end
 
 group :test do
+  gem "fakeredis", :require => "fakeredis/rspec"
   gem 'shoulda-matchers', '~> 5.0'
   gem 'simplecov', require: false
   gem 'vcr'
