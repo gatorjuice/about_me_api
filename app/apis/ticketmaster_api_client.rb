@@ -7,7 +7,7 @@ class TicketmasterApiClient
   INCLUDE_TEST = 'no'
   BAND_NAME_DELIMITER = ', '
   CACHE_EXP = 10.minutes
-  MAX_RESULTS = 100
+  MAX_RESULTS = 1
 
   def self.event_search(params = {})
     cached_key, success, parsed_response = execute_request(params)
