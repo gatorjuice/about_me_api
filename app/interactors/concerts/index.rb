@@ -9,7 +9,7 @@ module Concerts
     def call
       context.concerts = all_concerts
 
-      Concerts::CreateJob.perform_now(context.concerts.map(&:attributes))
+      enqueue_concerts_creation_job(context.concerts)
     end
 
     private
@@ -22,6 +22,10 @@ module Concerts
       Concurrent::Promise.execute do
         TicketmasterApiClient.event_search(context.concert_params)
       end
+    end
+
+    def enqueue_concerts_creation_job(concerts)
+      concerts.each { |concert| Concerts::CreateJob.perform_later(concert) }
     end
   end
 end

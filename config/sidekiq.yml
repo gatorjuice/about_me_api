@@ -3,6 +3,6 @@ development:
 production:
   :concurrency: 10
 :queues:
-  - <%= ENV.fetch('RAILS_ENV', 'development') %>_high
-  - <%= ENV.fetch('RAILS_ENV', 'development') %>_default
-  - <%= ENV.fetch('RAILS_ENV', 'development') %>_mailers
+  - high
+  - default
+  - mailers
