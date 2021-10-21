@@ -23,6 +23,10 @@ Bundler.require(*Rails.groups)
 
 module AboutMeApi
   class Application < Rails::Application
+    # Use sidekiq adapter for running ActiveJob Queue
+    config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_name_prefix = Rails.env
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 
