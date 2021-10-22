@@ -3,6 +3,8 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  get 'movies/index'
+  get 'movies/show'
   mount Sidekiq::Web, at: '/sidekiq'
 
   namespace :api do
@@ -12,6 +14,8 @@ Rails.application.routes.draw do
       resources :concerts, only: %i[index show]
       resources :favorites, only: %i[create]
       resources :users, only: %i[show create update]
+
+      resource :movie, only: [:show]
     end
   end
 end
