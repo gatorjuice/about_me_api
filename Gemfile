@@ -33,6 +33,12 @@ gem 'dotenv-rails'
 # Use Faraday for HTTP Requests
 gem 'faraday', '~> 1.5.1'
 
+# Use Nokogiri for HTML Scraping
+gem 'nokogiri'
+
+# Use open-uri for loading pages for scraper
+gem 'open-uri'
+
 # Sidekiq for async jobs
 gem 'sidekiq'
 
