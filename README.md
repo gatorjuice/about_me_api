@@ -34,7 +34,7 @@ Concepts Highlighted:
 
 ### Favorites
 
-#### Create 'POST localhost:3000/api/v1/favorties' with JSON body
+#### Create `POST localhost:3000/api/v1/favorties` with JSON body
 
 Determines current logged in user with a JWT token and creates favorites entries for them.
 
