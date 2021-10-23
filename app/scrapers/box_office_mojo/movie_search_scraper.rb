@@ -1,19 +1,27 @@
 # frozen_string_literal: true
 
 module BoxOfficeMojo
+  # Iterates over movie search results and parses movie data
   class MovieSearchScraper
+    attr_reader :document
+
     BASE_URL = 'https://www.boxofficemojo.com'
-    TITLE_SELECTOR = 'a.a-size-medium.a-link-normal.a-text-bold'
-    MOVIES_SELECTOR = 'div.a-fixed-left-grid-inner'
+    TITLE = 'a.a-size-medium.a-link-normal.a-text-bold'
+    MOVIES = 'div.a-fixed-left-grid-inner'
 
-    def self.scrape(query)
-      html = URI.parse("#{BASE_URL}/search/?q=#{query}").open
+    def initialize(url)
+      html = URI.parse(url.to_s).open
 
-      Nokogiri::HTML(html).css(MOVIES_SELECTOR).map do |movie|
-        movie_url = movie.css(TITLE_SELECTOR)[0].attributes['href'].value
+      @document = Nokogiri::HTML(html)
+    end
+
+    def scrape
+      document.css(MOVIES).map do |movie|
+        uri = movie.css(TITLE)[0].attributes['href'].value.split('?')[0]
+        url = URI.join(BASE_URL, uri, 'credits')
 
         Concurrent::Promise.execute do
-          BoxOfficeMojo::MovieScraper.scrape(movie_url)
+          BoxOfficeMojo::MovieScraper.new(url).scrape
         end
       end.map(&:value!).flatten
     end
