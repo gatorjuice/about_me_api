@@ -17,9 +17,44 @@ This App can be run locally in 2 easy ways. You can do traditional local Rails d
 
 1. Run `RAILS_ENV=production docker-compose up --build`
 
-## Purposes
+## API Collection
 
-This is not a project with any defined special purpose. It doesn't support any production frontend (yet). Instead this is meant to be a go-to safe place to try new rails features, teach through example, try out dependencies, etc. But for the sake of categorization and a halfway decent Readme, I will list out the main drivers for putting this together.
+All resources are nested under `/api/v1/` but are conceptually unrelated. This API wears many hats and is meant to reduce building and maintenance costs of managing several repos.
+
+### Concerts
+
+#### Index `GET localhost:3000/api/v1/concerts?zip_code=60618`
+
+Returns a collection of concerts in the zip_code. This relies on an integration to the Ticketmaster Discovery API.
+
+Concepts Highlighted:
+
+- Concurrent API Calls
+- Low-level Caching
+
+### Favorites
+
+#### Create 'POST localhost:3000/api/v1/favorties' with JSON body
+
+Determines current logged in user with a JWT token and creates favorites entries for them.
+
+Concepts Highlighted:
+
+- JWT Authentication
+- ActiveRecord Cleanup Hooks
+
+### Movies
+
+#### Index `GET localhost:3000/api/v1/movies?title=the+burbs`
+
+Opens BoxOfficeMojo and scrapes the page of search results, then opens each movie's page and scrapes details.
+
+Concepts Highlighted:
+
+- Web Scraping (with Nokogiri)
+- Concurrency
+
+## Purposes
 
 ### Teaching (myself and others)
 
