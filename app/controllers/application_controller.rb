@@ -2,9 +2,11 @@
 
 # Application Controller
 class ApplicationController < ActionController::API
-  # rescue_from StandardError do |exception|
-  #   render_error(exception.message)
-  # end
+  unless Rails.env.test?
+    rescue_from StandardError do |exception|
+      render_error(exception.message)
+    end
+  end
 
   def render_created(response)
     render_success(response, :created)
