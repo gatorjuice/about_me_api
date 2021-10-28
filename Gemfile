@@ -39,6 +39,11 @@ gem 'nokogiri'
 # Use open-uri for loading pages for scraper
 gem 'open-uri'
 
+# Sentry error alerting
+gem 'sentry-rails'
+gem 'sentry-ruby'
+gem 'sentry-sidekiq'
+
 # Sidekiq for async jobs
 gem 'sidekiq'
 
