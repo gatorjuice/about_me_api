@@ -9,9 +9,11 @@ Rails.application.routes.draw do
     namespace :v1 do
       post '/login', to: 'sessions#login'
 
+      resources :books
       resources :concerts, only: %i[index show]
       resources :favorites, only: %i[create]
       resources :movies, only: [:index]
+      resources :user_books, only: %i[create destroy]
       resources :users, only: %i[show create update]
     end
   end
