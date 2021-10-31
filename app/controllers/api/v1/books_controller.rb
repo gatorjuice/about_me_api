@@ -4,7 +4,9 @@ module Api
   module V1
     class BooksController < ApplicationController
       def index
-        render json: Book.all, each_serializer: BookSerializer
+        render json: Book.all.includes(:users).map do |book|
+          BookSerializer.new(book, user: User.last)
+        end
       end
 
       def show; end

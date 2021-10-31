@@ -8,6 +8,8 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
   validates :age, numericality: { only_integer: true }
 
+  has_many :user_books, dependent: :destroy
+  has_many :books, through: :user_books
   has_many :favorites, dependent: :destroy
   accepts_nested_attributes_for :favorites
   validates_associated :favorites
