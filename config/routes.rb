@@ -3,6 +3,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
   mount Sidekiq::Web, at: '/sidekiq'
 
   namespace :api do
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
       resources :books
       resources :concerts, only: %i[index show]
       resources :favorites, only: %i[create]
+      resources :funny_bot_messages, only: [:create]
       resources :movies, only: [:index]
       resources :user_books, only: %i[create destroy]
       resources :users, only: %i[show create update]

@@ -19,4 +19,12 @@ if Rails.env.development?
     }
   ]
   Book.create(books)
+
+  messages = [
+    {
+      user_id: 1,
+      body: 'hello, funnybot'
+    }
+  ]
+  FunnyBotMessage.create(messages)
 end
