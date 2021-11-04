@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Essentially a message just namespaced to funny bot world
 class FunnyBotMessage < ApplicationRecord
   after_create :broadcast_messages
 

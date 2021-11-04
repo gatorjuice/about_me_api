@@ -2,6 +2,7 @@
 
 module Api
   module V1
+    # UserBooks Controller
     class UserBooksController < ApplicationController
       def create
         render_success({})

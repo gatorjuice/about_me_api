@@ -2,6 +2,7 @@
 
 module Api
   module V1
+    # FunnyBotMessages Controller
     class FunnyBotMessagesController < ApplicationController
       def create
         render_success(FunnyBotMessage.create!(funny_bot_message_params))

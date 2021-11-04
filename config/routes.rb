@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :concerts, only: %i[index show]
       resources :favorites, only: %i[create]
       resources :funny_bot_messages, only: [:create]
+      resources :github_repos, only: [:index]
       resources :movies, only: [:index]
       resources :user_books, only: %i[create destroy]
       resources :users, only: %i[show create update]

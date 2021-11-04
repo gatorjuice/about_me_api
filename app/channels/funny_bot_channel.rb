@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Websocket Channel for FunnyBot
 class FunnyBotChannel < ApplicationCable::Channel
   CHANNEL = 'funny_bot_channel'
 

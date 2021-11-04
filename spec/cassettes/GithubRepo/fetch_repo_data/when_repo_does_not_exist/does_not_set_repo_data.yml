@@ -1,0 +1,68 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.github.com/repos/non-existent-org/vue?headers%5BAccept%5D=application/vnd.github.v3%2Bjson
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 04 Nov 2021 11:42:48 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
+        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation,
+        Sunset
+      Access-Control-Allow-Origin:
+      - "*"
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Frame-Options:
+      - deny
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - '0'
+      Referrer-Policy:
+      - origin-when-cross-origin, strict-origin-when-cross-origin
+      Content-Security-Policy:
+      - default-src 'none'
+      Vary:
+      - Accept-Encoding, Accept, X-Requested-With
+      X-Ratelimit-Limit:
+      - '60'
+      X-Ratelimit-Remaining:
+      - '43'
+      X-Ratelimit-Reset:
+      - '1636027878'
+      X-Ratelimit-Resource:
+      - core
+      X-Ratelimit-Used:
+      - '17'
+      Content-Length:
+      - '112'
+      X-Github-Request-Id:
+      - C70C:5112:A84CCD:17913FB:6183C738
+    body:
+      encoding: ASCII-8BIT
+      string: '{"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/repos#get-a-repository"}'
+  recorded_at: Thu, 04 Nov 2021 11:42:48 GMT
+recorded_with: VCR 6.0.0
