@@ -18,13 +18,17 @@ if Rails.env.development?
       img_url: 'https://edit.org/photos/img/blog/m68-book-cover-templates.jpg-840.jpg'
     }
   ]
-  Book.create(books)
+  Book.create!(books)
 
-  messages = [
-    {
-      user_id: 1,
-      body: 'hello, funnybot'
-    }
-  ]
-  FunnyBotMessage.create(messages)
+  FunnyBotMessage.create!(user_id: 1, body: 'hello, funnybot')
+
+  GithubRepo.create!(
+    [
+      { organization: 'vuejs', project: 'vue', category: :javascript_framework },
+      { organization: 'facebook', project: 'react', category: :javascript_framework },
+      { organization: 'angular', project: 'angular.js', category: :javascript_framework },
+      { organization: 'sveltejs', project: 'svelte', category: :javascript_framework },
+      { organization: 'emberjs', project: 'ember.js', category: :javascript_framework }
+    ]
+  )
 end
