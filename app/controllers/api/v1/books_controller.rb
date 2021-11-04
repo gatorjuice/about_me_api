@@ -2,6 +2,7 @@
 
 module Api
   module V1
+    # Books Controller
     class BooksController < ApplicationController
       def index
         render json: Book.all, each_serializer: BookSerializer
