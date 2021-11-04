@@ -38,7 +38,7 @@ class GithubRepo < ApplicationRecord
   end
 
   def fetch_repo_url
-    File.join(GITHUB_API, 'repos', organization.parameterize, project.parameterize)
+    File.join(GITHUB_API, 'repos', organization.gsub(' ', '_'), project.gsub(' ', '_'))
   end
 
   def name

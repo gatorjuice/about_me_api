@@ -25,6 +25,15 @@ RSpec.describe 'Api::V1::GithubRepos', type: :request do
           'stargazers_count' => 177_187,
           'watchers_count' => 177_187,
           'popularity_rating' => 373_710
+        },
+        {
+          'name' => 'angular.js',
+          'full_name' => 'angular/angular.js',
+          'category' => 'javascript_framework',
+          'forks_count' => 28_433,
+          'popularity_rating' => 145_354,
+          'stargazers_count' => 59_590,
+          'watchers_count' => 59_590
         }
       ]
     end
@@ -32,6 +41,7 @@ RSpec.describe 'Api::V1::GithubRepos', type: :request do
     before do
       create(:github_repo, organization: 'vuejs', project: 'vue')
       create(:github_repo, organization: 'facebook', project: 'react')
+      create(:github_repo, organization: 'angular', project: 'angular.js')
       create(:github_repo, :skip_validate, organization: 'non-existent-org', project: 'error')
     end
 
@@ -43,7 +53,6 @@ RSpec.describe 'Api::V1::GithubRepos', type: :request do
 
     it 'returns the correct data' do
       get api_v1_github_repos_path
-
       expect(data).to match_array(expected)
     end
   end
