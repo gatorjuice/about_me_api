@@ -28,7 +28,11 @@ if Rails.env.development?
       { organization: 'facebook', project: 'react', category: :javascript_framework },
       { organization: 'angular', project: 'angular.js', category: :javascript_framework },
       { organization: 'sveltejs', project: 'svelte', category: :javascript_framework },
-      { organization: 'emberjs', project: 'ember.js', category: :javascript_framework }
+      { organization: 'emberjs', project: 'ember.js', category: :javascript_framework },
+      { organization: 'rails', project: 'rails', category: :fullstack_framework },
+      { organization: 'phoenixframework', project: 'phoenix', category: :fullstack_framework },
+      { organization: 'django', project: 'django', category: :fullstack_framework },
+      { organization: 'nuxt', project: 'nuxt.js', category: :fullstack_framework }
     ]
   )
 end

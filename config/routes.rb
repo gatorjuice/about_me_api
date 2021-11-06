@@ -18,6 +18,9 @@ Rails.application.routes.draw do
       resources :movies, only: [:index]
       resources :user_books, only: %i[create destroy]
       resources :users, only: %i[show create update]
+
+      # Non ReSTful outlier
+      get '/github_repos/categories' => 'github_repos#categories'
     end
   end
 end

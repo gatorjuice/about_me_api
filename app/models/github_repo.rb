@@ -4,7 +4,10 @@
 class GithubRepo < ApplicationRecord
   attr_reader :repo_data
 
-  enum category: { javascript_framework: 0 }
+  enum category: {
+    javascript_framework: 0,
+    fullstack_framework: 10
+  }
   validates :organization, :project, presence: true
   validates :project, uniqueness: { scope: :organization }
   validate :repo_exists?
