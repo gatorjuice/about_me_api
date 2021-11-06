@@ -2,17 +2,17 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.github.com/repos/non-existent-org/vue?headers%5BAccept%5D=application/vnd.github.v3%2Bjson
+    uri: https://api.github.com/repos/non-existent-org/vue
     body:
       encoding: US-ASCII
       string: ''
     headers:
+      Accept:
+      - application/vnd.github.v3+json
       User-Agent:
       - Faraday v1.5.1
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
   response:
     status:
       code: 404
@@ -21,11 +21,27 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Thu, 04 Nov 2021 11:56:20 GMT
+      - Sat, 06 Nov 2021 16:35:08 GMT
       Content-Type:
       - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      X-Oauth-Scopes:
+      - ''
+      X-Accepted-Oauth-Scopes:
+      - repo
       X-Github-Media-Type:
       - github.v3; format=json
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4806'
+      X-Ratelimit-Reset:
+      - '1636217271'
+      X-Ratelimit-Used:
+      - '194'
+      X-Ratelimit-Resource:
+      - core
       Access-Control-Expose-Headers:
       - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
         X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
@@ -47,152 +63,10 @@ http_interactions:
       - default-src 'none'
       Vary:
       - Accept-Encoding, Accept, X-Requested-With
-      X-Ratelimit-Limit:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '26'
-      X-Ratelimit-Reset:
-      - '1636027878'
-      X-Ratelimit-Resource:
-      - core
-      X-Ratelimit-Used:
-      - '34'
-      Content-Length:
-      - '112'
       X-Github-Request-Id:
-      - D4A5:61B9:3185F6:6B5054:6183CA64
+      - 5240:2442:2AA3127:4D06DA7:6186AEBC
     body:
       encoding: ASCII-8BIT
       string: '{"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/repos#get-a-repository"}'
-  recorded_at: Thu, 04 Nov 2021 11:56:20 GMT
-- request:
-    method: get
-    uri: https://api.github.com/repos/non-existent-org/vue?headers%5BAccept%5D=application/vnd.github.v3%2Bjson
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v1.5.1
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Thu, 04 Nov 2021 11:56:20 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      X-Github-Media-Type:
-      - github.v3; format=json
-      Access-Control-Expose-Headers:
-      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
-        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation,
-        Sunset
-      Access-Control-Allow-Origin:
-      - "*"
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains; preload
-      X-Frame-Options:
-      - deny
-      X-Content-Type-Options:
-      - nosniff
-      X-Xss-Protection:
-      - '0'
-      Referrer-Policy:
-      - origin-when-cross-origin, strict-origin-when-cross-origin
-      Content-Security-Policy:
-      - default-src 'none'
-      Vary:
-      - Accept-Encoding, Accept, X-Requested-With
-      X-Ratelimit-Limit:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '25'
-      X-Ratelimit-Reset:
-      - '1636027879'
-      X-Ratelimit-Resource:
-      - core
-      X-Ratelimit-Used:
-      - '35'
-      Content-Length:
-      - '112'
-      X-Github-Request-Id:
-      - D4AA:3475:1BFE21:4803CB:6183CA65
-    body:
-      encoding: ASCII-8BIT
-      string: '{"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/repos#get-a-repository"}'
-  recorded_at: Thu, 04 Nov 2021 11:56:21 GMT
-- request:
-    method: get
-    uri: https://api.github.com/repos/non_existent_org/vue?headers%5BAccept%5D=application/vnd.github.v3%2Bjson
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      User-Agent:
-      - Faraday v1.5.1
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 404
-      message: Not Found
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Thu, 04 Nov 2021 12:16:46 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      X-Github-Media-Type:
-      - github.v3; format=json
-      Access-Control-Expose-Headers:
-      - ETag, Link, Location, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
-        X-RateLimit-Used, X-RateLimit-Resource, X-RateLimit-Reset, X-OAuth-Scopes,
-        X-Accepted-OAuth-Scopes, X-Poll-Interval, X-GitHub-Media-Type, Deprecation,
-        Sunset
-      Access-Control-Allow-Origin:
-      - "*"
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains; preload
-      X-Frame-Options:
-      - deny
-      X-Content-Type-Options:
-      - nosniff
-      X-Xss-Protection:
-      - '0'
-      Referrer-Policy:
-      - origin-when-cross-origin, strict-origin-when-cross-origin
-      Content-Security-Policy:
-      - default-src 'none'
-      Vary:
-      - Accept-Encoding, Accept, X-Requested-With
-      X-Ratelimit-Limit:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '53'
-      X-Ratelimit-Reset:
-      - '1636031634'
-      X-Ratelimit-Resource:
-      - core
-      X-Ratelimit-Used:
-      - '7'
-      Content-Length:
-      - '112'
-      X-Github-Request-Id:
-      - E95B:4E7D:11E1DA8:21EE2DD:6183CF2E
-    body:
-      encoding: ASCII-8BIT
-      string: '{"message":"Not Found","documentation_url":"https://docs.github.com/rest/reference/repos#get-a-repository"}'
-  recorded_at: Thu, 04 Nov 2021 12:16:46 GMT
+  recorded_at: Sat, 06 Nov 2021 16:35:08 GMT
 recorded_with: VCR 6.0.0

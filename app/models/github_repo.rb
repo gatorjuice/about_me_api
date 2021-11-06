@@ -20,7 +20,10 @@ class GithubRepo < ApplicationRecord
   def fetch_repo_data!
     return unless organization && project
 
-    response = Faraday.get(fetch_repo_url, headers: HEADERS)
+    response = Faraday.new(url: fetch_repo_url) do |conn|
+      conn.use(Faraday::Request::BasicAuthentication, ENV['GITHUB_USERNAME'], ENV['GITHUB_API_TOKEN'])
+      conn.headers = HEADERS
+    end.get
 
     if response.success?
       @repo_data = JSON.parse(response.body)
@@ -62,9 +65,9 @@ class GithubRepo < ApplicationRecord
   end
 
   def popularity_rating
-    weighted_average = (forks_count * FORKS_COUNT_WEIGHT) +
+    weighted_average = ((forks_count * FORKS_COUNT_WEIGHT) +
                        (stargazers_count * STARGAZERS_COUNT_WEIGHT) +
-                       (watchers_count * WATCHERS_COUNT_WEIGHT) / NUMBER_OF_WEIGHTS
+                       (watchers_count * WATCHERS_COUNT_WEIGHT)) / NUMBER_OF_WEIGHTS
 
     weighted_average.round
   end

@@ -95,7 +95,15 @@ VCR.configure do |config|
     record: :new_episodes
   }
 
-  ['TICKETMASTER_API_KEY'].each do |sensitive_key|
+  config.before_record do |i|
+    i.response.headers.delete('Set-Cookie')
+    i.request.headers.delete('Authorization')
+
+    u = URI.parse(i.request.uri)
+    i.request.uri.sub!(%r{://.*#{Regexp.escape(u.host)}}, "://#{u.host}")
+  end
+
+  %w[TICKETMASTER_API_KEY GITHUB_API_TOKEN].each do |sensitive_key|
     config.filter_sensitive_data("<#{sensitive_key}>") { ENV[sensitive_key] }
   end
 end

@@ -12,28 +12,28 @@ RSpec.describe 'Api::V1::GithubRepos', type: :request do
           'name' => 'vue',
           'full_name' => 'vuejs/vue',
           'category' => 'javascript_framework',
-          'forks_count' => 30_574,
-          'stargazers_count' => 189_961,
-          'watchers_count' => 189_961,
-          'popularity_rating' => 391_283
+          'forks_count' => a_kind_of(Integer),
+          'stargazers_count' => a_kind_of(Integer),
+          'watchers_count' => a_kind_of(Integer),
+          'popularity_rating' => a_kind_of(Integer)
         },
         {
           'name' => 'react',
           'full_name' => 'facebook/react',
           'category' => 'javascript_framework',
-          'forks_count' => 35_801,
-          'stargazers_count' => 177_187,
-          'watchers_count' => 177_187,
-          'popularity_rating' => 373_710
+          'forks_count' => a_kind_of(Integer),
+          'stargazers_count' => a_kind_of(Integer),
+          'watchers_count' => a_kind_of(Integer),
+          'popularity_rating' => a_kind_of(Integer)
         },
         {
           'name' => 'angular.js',
           'full_name' => 'angular/angular.js',
           'category' => 'javascript_framework',
-          'forks_count' => 28_433,
-          'popularity_rating' => 145_354,
-          'stargazers_count' => 59_590,
-          'watchers_count' => 59_590
+          'forks_count' => a_kind_of(Integer),
+          'popularity_rating' => a_kind_of(Integer),
+          'stargazers_count' => a_kind_of(Integer),
+          'watchers_count' => a_kind_of(Integer)
         }
       ]
     end
