@@ -24,8 +24,10 @@ module GithubRepos
     end
 
     def repos
-      if context.params[:category]
-        GithubRepo.public_send(context.params[:category])
+      category = context.params[:category]
+
+      if category&.in?(GithubRepo.categories.keys)
+        GithubRepo.public_send(category)
       else
         GithubRepo.all
       end
