@@ -6,7 +6,8 @@ class GithubRepo < ApplicationRecord
 
   enum category: {
     javascript_framework: 0,
-    fullstack_framework: 10
+    fullstack_framework: 10,
+    language: 20
   }
   validates :organization, :project, presence: true
   validates :project, uniqueness: { scope: :organization }
