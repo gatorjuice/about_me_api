@@ -32,7 +32,13 @@ if Rails.env.development?
       { organization: 'rails', project: 'rails', category: :fullstack_framework },
       { organization: 'phoenixframework', project: 'phoenix', category: :fullstack_framework },
       { organization: 'django', project: 'django', category: :fullstack_framework },
-      { organization: 'nuxt', project: 'nuxt.js', category: :fullstack_framework }
+      { organization: 'nuxt', project: 'nuxt.js', category: :fullstack_framework },
+      { organization: 'ruby', project: 'ruby', category: :language },
+      { organization: 'python', project: 'cpython', category: :language },
+      { organization: 'rust-lang', project: 'rust', category: :language },
+      { organization: 'elixir-lang', project: 'elixir', category: :language },
+      { organization: 'scala', project: 'scala', category: :language },
+      { organization: 'google', project: 'go-github', category: :language }
     ]
   )
 end
