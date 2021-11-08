@@ -14,16 +14,6 @@ module Api
         end
       end
 
-      def categories
-        categories_hashes = GithubRepo.categories.map do |key, _|
-          {
-            category: key,
-            formatted_category: key.titleize
-          }
-        end
-        render_success(categories_hashes)
-      end
-
       private
 
       def index_params
