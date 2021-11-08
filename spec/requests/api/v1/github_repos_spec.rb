@@ -53,6 +53,7 @@ RSpec.describe 'Api::V1::GithubRepos', type: :request do
 
     it 'returns the correct data' do
       get api_v1_github_repos_path
+
       expect(data).to match_array(expected)
     end
   end

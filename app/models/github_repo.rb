@@ -9,6 +9,7 @@ class GithubRepo < ApplicationRecord
     fullstack_framework: 10,
     language: 20
   }
+
   validates :organization, :project, presence: true
   validates :project, uniqueness: { scope: :organization }
   validate :repo_exists?
@@ -24,16 +25,12 @@ class GithubRepo < ApplicationRecord
   def fetch_repo_data!
     return unless organization && project
 
-    response = Faraday.new(url: fetch_repo_url) do |conn|
-      conn.use(Faraday::Request::BasicAuthentication, ENV['GITHUB_USERNAME'], ENV['GITHUB_API_TOKEN'])
-      conn.headers = HEADERS
-    end.get
+    response = faraday_client(fetch_repo_url).get
 
-    if response.success?
-      @repo_data = JSON.parse(response.body)
-    else
-      Rails.logger.error(response.body)
-    end
+    @repo_data = JSON.parse(response.body) if response.success?
+    Rails.logger.error(response.body) unless response.success?
+
+    self
   end
 
   private
@@ -74,5 +71,16 @@ class GithubRepo < ApplicationRecord
                        (watchers_count * WATCHERS_COUNT_WEIGHT)) / NUMBER_OF_WEIGHTS
 
     weighted_average.round
+  end
+
+  def faraday_client(url)
+    Faraday.new(url: url) do |conn|
+      conn.use(
+        Faraday::Request::BasicAuthentication,
+        ENV['GITHUB_USERNAME'],
+        ENV['GITHUB_API_TOKEN']
+      )
+      conn.headers = HEADERS
+    end
   end
 end

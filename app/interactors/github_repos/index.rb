@@ -16,7 +16,6 @@ module GithubRepos
       repos.map do |repo|
         Concurrent::Promise.execute do
           repo.fetch_repo_data!
-          repo
         end
       rescue StandardError => e
         context.errors = e.full_messages
