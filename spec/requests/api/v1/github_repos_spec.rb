@@ -9,6 +9,7 @@ RSpec.describe 'Api::V1::GithubRepos', type: :request do
     let(:expected) do
       [
         {
+          'id' => a_kind_of(Integer),
           'name' => 'vue',
           'full_name' => 'vuejs/vue',
           'category' => 'javascript_framework',
@@ -18,6 +19,7 @@ RSpec.describe 'Api::V1::GithubRepos', type: :request do
           'popularity_rating' => a_kind_of(Integer)
         },
         {
+          'id' => a_kind_of(Integer),
           'name' => 'react',
           'full_name' => 'facebook/react',
           'category' => 'javascript_framework',
@@ -27,6 +29,7 @@ RSpec.describe 'Api::V1::GithubRepos', type: :request do
           'popularity_rating' => a_kind_of(Integer)
         },
         {
+          'id' => a_kind_of(Integer),
           'name' => 'angular.js',
           'full_name' => 'angular/angular.js',
           'category' => 'javascript_framework',
