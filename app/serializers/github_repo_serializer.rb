@@ -2,7 +2,8 @@
 
 # GithubRepo Serializer
 class GithubRepoSerializer < ActiveModel::Serializer
-  attributes :name,
+  attributes :id,
+             :name,
              :full_name,
              :category,
              :forks_count,
