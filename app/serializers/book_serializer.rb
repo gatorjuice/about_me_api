@@ -6,7 +6,7 @@ class BookSerializer < ActiveModel::Serializer
 
   # rubocop:disable Naming/PredicateName
   def is_favorite
-    true
+    object.in? instance_options[:favorites]
   end
   # rubocop:enable Naming/PredicateName
 end

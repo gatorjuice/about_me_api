@@ -4,20 +4,10 @@ module Api
   module V1
     # Books Controller
     class BooksController < ApplicationController
+      before_action :authorize_user
+
       def index
-        render json: Book.all, each_serializer: BookSerializer
-      end
-
-      def show; end
-
-      def create
-        render_success({})
-      end
-
-      def update; end
-
-      def destroy
-        render_success({})
+        render json: Book.all, each_serializer: BookSerializer, favorites: logged_in_user.books
       end
     end
   end

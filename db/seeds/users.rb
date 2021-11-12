@@ -1,4 +1,8 @@
 # frozen_string_literal: true
 
-user = User.create!(username: 'jgates', password: 'password', age: 40)
-user.favorites.create!(category: :beverage, description: 'Coke')
+users = [
+  { username: 'demo_user@test.com', password: 'p@ssw@rd', age: 30 },
+  { username: 'gatorjuice@gmail.com', password: 'p@ssw@rd', age: 40 }
+]
+User.create!(users)
+User.last.favorites.create!(category: :beverage, description: 'Coke')
