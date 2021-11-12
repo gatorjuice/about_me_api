@@ -4,6 +4,8 @@ module Api
   module V1
     # Controller for Concerts API
     class ConcertsController < ApplicationController
+      before_action :authorize_user
+
       def index
         result = Concerts::Index.call(
           concert_params: params.permit(:zip_code, :bust_cache)

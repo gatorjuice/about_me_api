@@ -23,7 +23,7 @@ class ApplicationController < ActionController::API
   end
 
   def encode_token(payload)
-    JWT.encode(payload, 's3cr3t')
+    JWT.encode(payload, ENV.fetch('RAILS_MASTER_KEY'))
   end
 
   def auth_header
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::API
 
     token = auth_header.split[1]
 
-    JWT.decode(token, 's3cr3t', true, algorithm: 'HS256')
+    JWT.decode(token, ENV.fetch('RAILS_MASTER_KEY'), true, algorithm: 'HS256')
   rescue JWT::DecodeError
     nil
   end
