@@ -72,4 +72,4 @@ Being a full-time developer on closed-source code means that I don't have as muc
 
 ## What this App Does
 
-For now, this App serves as the backend for a non-existent frontend form. It is meant to capture basic user information, nothing serious. Imagine if you joined a club and they wanted you to create an account and provide some information about yourself.
+For now, this App serves as the backend for https://github.com/gatorjuice/about_me_vue.
