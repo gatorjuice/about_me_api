@@ -4,6 +4,8 @@ module Api
   module V1
     # GithubRepos Controller
     class GithubReposController < ApplicationController
+      before_action :authorize_user
+
       def index
         result = GithubRepos::Index.call(params: index_params)
 
