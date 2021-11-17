@@ -81,7 +81,7 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
-    date (3.1.0)
+    date (3.2.1)
     diff-lcs (1.4.4)
     docile (1.4.0)
     dotenv (2.7.6)
