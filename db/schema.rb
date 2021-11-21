@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_12_114121) do
+ActiveRecord::Schema.define(version: 2021_11_21_200852) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,6 +59,20 @@ ActiveRecord::Schema.define(version: 2021_11_12_114121) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["organization", "project"], name: "index_github_repos_on_organization_and_project", unique: true
+  end
+
+  create_table "movies", force: :cascade do |t|
+    t.string "box_office_mojo_id"
+    t.string "title"
+    t.text "summary"
+    t.jsonb "performance"
+    t.jsonb "crew"
+    t.jsonb "cast"
+    t.jsonb "misc"
+    t.text "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["box_office_mojo_id"], name: "index_movies_on_box_office_mojo_id", unique: true
   end
 
   create_table "user_books", force: :cascade do |t|

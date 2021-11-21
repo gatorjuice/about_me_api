@@ -22,8 +22,9 @@ module BoxOfficeMojo
     IMAGE_DIV           = 'div.a-fixed-left-grid-col.a-col-left'
     IMAGE               = 'img'
 
-    def scrape
-      {
+    def scrape(box_office_mojo_id)
+      Movie.create!(
+        box_office_mojo_id: box_office_mojo_id,
         title: css_dig(SUMMARY_ELEMENT, TITLE).text.squish,
         summary: css_dig(SUMMARY_ELEMENT, SUMMARY).text,
         performance: parse_performance,
@@ -31,7 +32,7 @@ module BoxOfficeMojo
         cast: parse_cast,
         misc: parse_misc,
         image: css_dig(IMAGE_DIV, IMAGE)[0].attributes['src'].value
-      }
+      )
     end
 
     private
