@@ -19,8 +19,10 @@ module BoxOfficeMojo
       document.css(MOVIES).map do |movie|
         uri = movie.css(TITLE)[0].attributes['href'].value.split('?')[0]
         url = URI.join(BASE_URL, uri, 'credits')
+        box_office_mojo_id = %r{/title/(?<id>[a-zA-Z0-9]+)}.match(uri)[:id]
 
-        BoxOfficeMojo::MovieScraper.new(url).scrape
+        Movie.find_by(box_office_mojo_id: box_office_mojo_id) ||
+          BoxOfficeMojo::MovieScraper.new(url).scrape(box_office_mojo_id)
       end
     end
 
