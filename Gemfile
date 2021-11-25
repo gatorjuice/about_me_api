@@ -53,6 +53,9 @@ gem 'rack-cors', '~> 1.1.1'
 # Use JSON Web Tokens
 gem 'jwt', '~> 2.2.3'
 
+# For text messaging
+gem 'twilio-ruby', '~> 5.61.1'
+
 gem 'active_model_serializers'
 
 gem 'interactor-rails', '~> 2.0'
