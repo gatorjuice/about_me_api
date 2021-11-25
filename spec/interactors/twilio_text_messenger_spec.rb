@@ -5,7 +5,7 @@ require 'rails_helper'
 RSpec.describe TwilioTextMessenger, type: :interactor do
   subject(:context) do
     described_class.call(
-      phone_number: ENV['TWILIO_TO_PHONE_NUMBER'],
+      phone_number: '+13125551212',
       funny_bot_message: create(:funny_bot_message)
     )
   end
@@ -24,8 +24,8 @@ RSpec.describe TwilioTextMessenger, type: :interactor do
     it 'sends the message to the phone number' do
       expect(twilio_messages).to have_received(:create).with(
         body: 'MyString',
-        from: '3124807996',
-        to: '3124807996'
+        messaging_service_sid: a_kind_of(String),
+        to: '+13125551212'
       )
     end
   end

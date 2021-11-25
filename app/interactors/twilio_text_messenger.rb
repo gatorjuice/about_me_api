@@ -6,8 +6,8 @@ class TwilioTextMessenger
     client = Twilio::REST::Client.new
 
     client.messages.create(
-      from: ENV.fetch('TWILIO_FROM_PHONE_NUMBER'),
       to: phone_number,
+      messaging_service_sid: ENV['TWILIO_MESSAGING_SERVICE_SID'],
       body: funny_bot_message.body
     )
   end
