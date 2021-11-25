@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :funny_bot_message do
-    user_id { 1 }
+    user
     body { 'MyString' }
   end
 end
