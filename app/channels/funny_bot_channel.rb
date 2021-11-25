@@ -19,7 +19,10 @@ class FunnyBotChannel < ApplicationCable::Channel
   end
 
   def post_message(data)
-    FunnyBotMessage.create!(user_id: 1, body: data['message'])
+    TwilioTextMessenger.call(
+      phone_number: ENV['TWILIO_PHONE_NUMBER'],
+      funny_bot_message: FunnyBotMessage.create!(user: User.last, body: data['message'])
+    )
 
     all_messages
   end
