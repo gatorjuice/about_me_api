@@ -19,11 +19,11 @@ class FunnyBotChannel < ApplicationCable::Channel
   end
 
   def post_message(data)
+    return unless FunnyBotMessage.last.created_by_funny_bot
+
     TwilioTextMessenger.call(
       phone_number: ENV['TWILIO_PHONE_NUMBER'],
       funny_bot_message: FunnyBotMessage.create!(user: User.last, body: data['message'])
     )
-
-    all_messages
   end
 end
