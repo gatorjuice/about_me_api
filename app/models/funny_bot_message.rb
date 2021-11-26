@@ -6,6 +6,8 @@ class FunnyBotMessage < ApplicationRecord
 
   belongs_to :user
 
+  validates :body, length: { maximum: 160 }
+
   def broadcast_messages
     ActionCable.server.broadcast('funny_bot_channel', { funnyBotMessages: self.class.order(:created_at) })
   end

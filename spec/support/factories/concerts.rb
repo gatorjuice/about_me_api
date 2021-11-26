@@ -8,6 +8,6 @@ FactoryBot.define do
     dates { '' }
     sales { '' }
     price_ranges { '' }
-    venues { [] }
+    venues { [{ 'name' => 'The Empty Bottle' }] }
   end
 end
