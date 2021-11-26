@@ -8,7 +8,7 @@ RSpec.describe Favorite, type: :model do
     it { is_expected.to validate_presence_of(:description) }
   end
 
-  describe 'friendships' do
+  describe 'relationships' do
     it { is_expected.to belong_to(:user) }
   end
 end
