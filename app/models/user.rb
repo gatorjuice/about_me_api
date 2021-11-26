@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :user_books, dependent: :destroy
   has_many :books, through: :user_books
+  has_many :funny_bot_messages, dependent: :destroy
   accepts_nested_attributes_for :favorites
   validates_associated :favorites
 
