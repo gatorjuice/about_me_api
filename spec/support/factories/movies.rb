@@ -2,6 +2,7 @@
 
 FactoryBot.define do
   factory :movie do
+    sequence(:box_office_mojo_id) { |n| "tt32141#{n}" }
     title { "The 'Burbs (1989)" }
 
     summary do
