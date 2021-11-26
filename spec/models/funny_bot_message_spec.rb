@@ -3,9 +3,11 @@
 require 'rails_helper'
 
 RSpec.describe FunnyBotMessage, type: :model do
-  describe 'relationships' do
-    it { is_expected.to belong_to(:user) }
-  end
+  # relationships
+  it { is_expected.to belong_to(:user) }
+
+  # validations
+  it { is_expected.to validate_length_of(:body).is_at_most(160) }
 
   describe '#broadcast_messages' do
     let!(:existing_message) { create(:funny_bot_message) }

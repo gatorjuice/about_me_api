@@ -3,11 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe GithubRepo, type: :model do
-  describe 'validations' do
-    it { is_expected.to validate_presence_of(:organization) }
-    it { is_expected.to validate_presence_of(:project) }
-    it { is_expected.to validate_uniqueness_of(:project).scoped_to(:organization) }
-  end
+  # validations
+  it { is_expected.to validate_presence_of(:organization) }
+  it { is_expected.to validate_presence_of(:project) }
+  it { is_expected.to validate_uniqueness_of(:project).scoped_to(:organization) }
 
   describe 'fetch_repo_data!', vcr: true do
     context 'when repo exists' do

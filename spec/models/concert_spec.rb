@@ -3,15 +3,14 @@
 require 'rails_helper'
 
 RSpec.describe Concert, type: :model do
-  describe 'validations' do
-    it { is_expected.to validate_presence_of(:band) }
-    it { is_expected.to validate_presence_of(:source_id) }
+  # validations
+  it { is_expected.to validate_presence_of(:band) }
+  it { is_expected.to validate_presence_of(:source_id) }
 
-    it do
-      expect(described_class.new).to validate_uniqueness_of(:source_id)
-        .scoped_to(:band)
-        .with_message('Band at event is a duplicate, skipping creation.')
-    end
+  it do
+    expect(described_class.new).to validate_uniqueness_of(:source_id)
+      .scoped_to(:band)
+      .with_message('Band at event is a duplicate, skipping creation.')
   end
 
   describe '#venue_name' do
