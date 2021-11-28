@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_26_005909) do
+ActiveRecord::Schema.define(version: 2021_11_28_011442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,19 @@ ActiveRecord::Schema.define(version: 2021_11_26_005909) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["box_office_mojo_id"], name: "index_movies_on_box_office_mojo_id", unique: true
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "title", null: false
+    t.text "details"
+    t.datetime "due_at"
+    t.datetime "completed_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["completed_at"], name: "index_todos_on_completed_at"
+    t.index ["due_at"], name: "index_todos_on_due_at"
+    t.index ["user_id"], name: "index_todos_on_user_id"
   end
 
   create_table "user_books", force: :cascade do |t|
