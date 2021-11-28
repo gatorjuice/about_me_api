@@ -29,11 +29,19 @@ RSpec.describe Todo, type: :model do
     end
   end
 
-  describe '#complete!' do
+  describe '#mark_complete!' do
     it 'populates the todos completed_at field' do
-      incomplete_todo.complete!
+      incomplete_todo.mark_complete!
 
       expect(incomplete_todo.completed_at).not_to be_nil
+    end
+  end
+
+  describe '#mark_incomplete!' do
+    it 'populates the todos completed_at field' do
+      complete_todo.mark_incomplete!
+
+      expect(complete_todo.completed_at).to be_nil
     end
   end
 end

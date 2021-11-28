@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       resources :movies, only: [:index]
       resources :user_books, only: %i[create destroy]
       resources :users, only: %i[show create update]
+      resources :todos, only: %i[index create update destroy]
     end
   end
 end
