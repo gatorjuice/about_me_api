@@ -34,15 +34,21 @@ class ApplicationController < ActionController::API
   def decoded_token
     return unless auth_header
 
-    token = auth_header.split[1]
+    @decoded_token ||= begin
+      token = auth_header.split[1]
 
-    JWT.decode(token, ENV.fetch('RAILS_MASTER_KEY'), true, algorithm: 'HS256')
+      JWT.decode(token, ENV.fetch('RAILS_MASTER_KEY'), true, algorithm: 'HS256')
+    end
   rescue JWT::DecodeError
     nil
   end
 
+  def token_valid?(decoded_token)
+    decoded_token[0]['exp'] > Time.now.to_i
+  end
+
   def logged_in_user
-    return unless decoded_token
+    return unless decoded_token && token_valid?(decoded_token)
 
     user_id = decoded_token[0]['user_id']
     @user = User.find_by(id: user_id)
