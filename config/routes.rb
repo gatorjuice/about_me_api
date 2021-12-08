@@ -3,6 +3,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  post "/graphql", to: "graphql#execute"
   mount ActionCable.server => '/cable'
   mount Sidekiq::Web, at: '/sidekiq'
 
