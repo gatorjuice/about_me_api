@@ -11,6 +11,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'concurrent-ruby', '~> 1.1.9'
 gem 'dotenv-rails'
 gem 'faraday', '~> 1.5.1'
+gem 'graphiql-rails'
 gem 'graphql', '~> 1.13.0'
 gem 'interactor-rails', '~> 2.0'
 gem 'jwt', '~> 2.2.3'
@@ -38,6 +39,7 @@ group :development do
   gem 'listen', '~> 3.3'
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false
+  gem 'sass-rails'
   gem 'spring'
 end
 
