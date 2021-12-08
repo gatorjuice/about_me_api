@@ -3,6 +3,11 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  if Rails.env.development?
+    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
+  end
+  post "/graphql", to: "graphql#execute"
+
   mount ActionCable.server => '/cable'
   mount Sidekiq::Web, at: '/sidekiq'
 
@@ -18,6 +23,7 @@ Rails.application.routes.draw do
       resources :movies, only: [:index]
       resources :user_books, only: %i[create destroy]
       resources :users, only: %i[show create update]
+      resources :todos, only: %i[index create update destroy]
     end
   end
 end
