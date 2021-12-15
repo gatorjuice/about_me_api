@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # GithubRepo Serializer
-class GithubRepoSerializer < ActiveModel::Serializer
+class GithubRepoSerializer < BaseSerializer
   attributes :id,
              :name,
              :full_name,
