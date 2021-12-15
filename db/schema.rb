@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_26_005909) do
+ActiveRecord::Schema.define(version: 2021_12_15_115904) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,26 @@ ActiveRecord::Schema.define(version: 2021_11_26_005909) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["box_office_mojo_id"], name: "index_movies_on_box_office_mojo_id", unique: true
+  end
+
+  create_table "state_abbreviations", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "abbrev", null: false
+    t.string "code", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "abbrev", "code"], name: "index_state_abbreviations_on_name_and_abbrev_and_code", unique: true
+  end
+
+  create_table "state_data", force: :cascade do |t|
+    t.string "state_name"
+    t.integer "median_household_income"
+    t.decimal "share_unemployed_seasonal", precision: 4, scale: 3
+    t.decimal "share_population_in_metro_areas", precision: 4, scale: 3
+    t.decimal "share_population_with_high_school_degree", precision: 4, scale: 3
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["state_name"], name: "index_state_data_on_state_name", unique: true
   end
 
   create_table "user_books", force: :cascade do |t|

@@ -1,0 +1,52 @@
+state,median_household_income,share_unemployed_seasonal,share_population_in_metro_areas,share_population_with_high_school_degree
+Alabama,42278,0.06,0.64,0.821
+Alaska,67629,0.064,0.63,0.914
+Arizona,49254,0.063,0.9,0.842
+Arkansas,44922,0.052,0.69,0.824
+California,60487,0.059,0.97,0.806
+Colorado,60940,0.04,0.8,0.893
+Connecticut,70161,0.052,0.94,0.886
+Delaware,57522,0.049,0.9,0.874
+District of Columbia,68277,0.067,1,0.871
+Florida,46140,0.052,0.96,0.853
+Georgia,49555,0.058,0.82,0.839
+Hawaii,71223,0.034,0.76,0.904
+Idaho,53438,0.042,0.7,0.884
+Illinois,54916,0.054,0.9,0.864
+Indiana,48060,0.044,0.79,0.866
+Iowa,57810,0.036,0.6,0.914
+Kansas,53444,0.044,0.64,0.897
+Kentucky,42786,0.05,0.56,0.817
+Louisiana,42406,0.06,0.81,0.822
+Maine,51710,0.044,0.54,0.902
+Maryland,76165,0.051,0.97,0.89
+Massachusetts,63151,0.046,0.97,0.89
+Michigan,52005,0.05,0.87,0.879
+Minnesota,67244,0.038,0.75,0.915
+Mississippi,35521,0.061,0.45,0.804
+Missouri,56630,0.053,0.78,0.868
+Montana,51102,0.041,0.34,0.908
+Nebraska,56870,0.029,0.6,0.898
+Nevada,49875,0.067,0.87,0.839
+New Hampshire,73397,0.034,0.63,0.913
+New Jersey,65243,0.056,1,0.874
+New Mexico,46686,0.068,0.69,0.828
+New York,54310,0.051,0.94,0.847
+North Carolina,46784,0.058,0.76,0.843
+North Dakota,60730,0.028,0.5,0.901
+Ohio,49644,0.045,0.75,0.876
+Oklahoma,47199,0.044,0.59,0.856
+Oregon,58875,0.062,0.87,0.891
+Pennsylvania,55173,0.053,0.87,0.879
+Rhode Island,58633,0.054,1,0.847
+South Carolina,44929,0.057,0.79,0.836
+South Dakota,53053,0.035,0.51,0.899
+Tennessee,43716,0.057,0.82,0.831
+Texas,53875,0.042,0.92,0.799
+Utah,63383,0.036,0.82,0.904
+Vermont,60708,0.037,0.35,0.91
+Virginia,66155,0.043,0.89,0.866
+Washington,59068,0.052,0.86,0.897
+West Virginia,39552,0.073,0.55,0.828
+Wisconsin,58080,0.043,0.69,0.898
+Wyoming,55690,0.04,0.31,0.918
